@@ -1,17 +1,16 @@
 import React from 'react'
 import {useAnimatedScale, useDimension} from './hooks'
-const brickW = 40
-const brickH = 40 
-const brickSyle = (w, h, i) => {
+import {brickW, brickH} from './constant'
+const brickStyle = (w, h, i) => {
     const bw = w / brickW 
     const bh = h / brickH 
     const ix = i % brickW 
     const iy = Math.floor(i / brickH)
     const position = 'absolute'
-    const width = `${iw}px`
-    const height = `${ih}px`
-    const left = `${ix * brickW}px`
-    const top = `${iy * brickH}px`
+    const width = `${bw}px`
+    const height = `${bh}px`
+    const left = `${ix * bw}px`
+    const top = `${iy * bh}px`
     const border = `2px solid indigo`
     return {
         position,
@@ -30,7 +29,10 @@ const brickFillStyle = (w, h, i, scale) => {
     height = `${parseFloat(height) * scale}px`
     const background = 'indigo'
     style.border = null  
-    return {...style, width, height}
+    style.top = `${parseFloat(width) / 2 - parseFloat(width) * 0.5 * scale}px`
+    style.left = `${parseFloat(height) / 2 - parseFloat(height) * 0.5 * scale}px`
+    console.log(style)
+    return {...style, width, height, style, background}
 }
 
 const Brick = ({tap, i}) => {

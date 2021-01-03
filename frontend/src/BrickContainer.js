@@ -1,12 +1,11 @@
 import React from 'react'
 import Brick from './Brick'
-const brickW = 40
-const brickH = 40 
+import {brickW, brickH} from './constant' 
 
 const bricks = () => {
     const brs = []
     for (var j = 0; j < brickH * brickW; j++) {
-        brs.push(<Brick key = {`brick_${j}`} tap = {() => {}}/>)
+        brs.push(<Brick key = {`brick_${j}`} i = {j} tap = {() => {}}/>)
     }
     return brs 
 }
